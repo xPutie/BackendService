@@ -31,27 +31,32 @@ public class EmployeeController {
                 .build();
     }
 
+    //API ADD
     @PostMapping(path = "/save")
     public ResponseEntity<Employee> saveEmployee(@RequestBody EmployeeDTO employeeDTO) {
         return ResponseEntity.ok(employeeService.addEmployee(employeeDTO));
     }
 
+    //API LOGIN
     @GetMapping("/{employeeID}")
     public ResponseEntity<Employee> getEmployee(@PathVariable int employeeID){
         return ResponseEntity.ok(employeeService.getEmployeeById(employeeID));
     }
 
+    //API UPDATE
     @PutMapping("/{employeeID}")
     public ResponseEntity<Employee> updateEmployee(@PathVariable int employeeID, @RequestBody EmployeeDTO employeeDTO) {
         return ResponseEntity.ok(employeeService.updateEmployee(employeeID, employeeDTO));
     }
 
+    //API DELETE
     @DeleteMapping("/{employeeID}")
     public ResponseEntity<Void> deleteEmployee(@PathVariable int employeeID) {
         employeeService.deleteEmployee(employeeID);
         return ResponseEntity.noContent().build();
     }
 
+    //API LOGIN
     @PostMapping("/login")
     public ResponseEntity<Employee> loginEmployee(@RequestBody LoginDTO loginDTO){
         return ResponseEntity.ok(employeeService.loginEmployee(loginDTO));
