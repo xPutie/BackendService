@@ -1,4 +1,4 @@
-package fu.connect_api.register_login.controller.response;
+package fu.api.backend.controller.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

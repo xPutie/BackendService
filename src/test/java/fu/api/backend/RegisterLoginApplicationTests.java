@@ -1,4 +1,4 @@
-package fu.connect_api.register_login;
+package fu.api.backend;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

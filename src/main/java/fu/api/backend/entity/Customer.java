@@ -1,4 +1,4 @@
-package fu.connect_api.register_login.entity;
+package fu.api.backend.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -12,7 +12,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @Table(name = "user")
-public class Employee {
+public class Customer {
 
     @Id//primary key
     @GeneratedValue(strategy = GenerationType.IDENTITY)//
@@ -32,7 +32,7 @@ public class Employee {
     private String fullName;
 
     @Column(name = "phone_number")
-    private int phoneNumber;
+    private String phoneNumber;
 
     @Column(name = "address", length = 255)
     private String address;

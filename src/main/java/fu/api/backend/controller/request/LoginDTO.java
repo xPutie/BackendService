@@ -1,4 +1,4 @@
-package fu.connect_api.register_login.controller.request;
+package fu.api.backend.controller.request;
 
 import lombok.Getter;
 import lombok.Setter;

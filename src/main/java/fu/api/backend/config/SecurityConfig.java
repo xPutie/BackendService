@@ -1,4 +1,4 @@
-package fu.connect_api.register_login.config;
+package fu.api.backend.config;
 
 import org.springframework.context.annotation.Configuration;
 
