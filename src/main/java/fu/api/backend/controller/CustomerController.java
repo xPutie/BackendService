@@ -1,9 +1,10 @@
 package fu.api.backend.controller;
 
 
-import fu.api.backend.controller.request.CustomerDTO;
+import fu.api.backend.controller.request.CustomerCreationRequest;
 import fu.api.backend.controller.request.LoginDTO;
-import fu.api.backend.controller.response.ResponseData;
+import fu.api.backend.common.ResponseData;
+import fu.api.backend.controller.response.CustomerResponse;
 import fu.api.backend.entity.Customer;
 import fu.api.backend.enums.ErrorCode;
 import fu.api.backend.exceptions.AppException;
@@ -28,8 +29,8 @@ public class CustomerController {
 
     //HTTP VERB GET, POST, PUT, DELELTE
     @GetMapping("/")
-    public ResponseData<List<Customer>> fetchAllCustomer() {
-        return ResponseData.<List<Customer>>builder()
+    public ResponseData<List<CustomerResponse>> fetchAllCustomer() {
+        return ResponseData.<List<CustomerResponse>>builder()
                 .code(200)
                 .message("Get all customers success")
                 .data(customerService.getAllCustomer())
@@ -38,36 +39,51 @@ public class CustomerController {
 
     //API ADD
     @PostMapping(path = "/save")
-    public ResponseEntity<Customer> saveCustomer(@RequestBody @Valid CustomerDTO customerDTO) {
-        Customer customer = customerService.addCustomer(customerDTO);
-        if (customer == null) {
-            throw new AppException(ErrorCode.NOT_NULL);
-        }
-        return ResponseEntity.ok(customer);
+    public ResponseData<CustomerResponse> saveCustomer(@RequestBody @Valid CustomerCreationRequest customerCreationRequest) {
+        return ResponseData.<CustomerResponse>builder()
+                .code(201)
+                .message("Save customer success")
+                .data(customerService.addCustomer(customerCreationRequest))
+                .build();
     }
 
     //API LOGIN
     @GetMapping("/{customerID}")
-    public ResponseEntity<Customer> getCustomer(@PathVariable int customerID){
-        return ResponseEntity.ok(customerService.getCustomerById(customerID));
+    public ResponseData<CustomerResponse> getCustomer(@PathVariable int customerID) {
+        return ResponseData.<CustomerResponse>builder()
+                .code(200)
+                .message("Get customer success")
+                .data(customerService.getCustomerById(customerID))
+                .build();
     }
 
     //API UPDATE
     @PutMapping("/{customerID}")
-    public ResponseEntity<Customer> updateCustomer(@PathVariable int customerID, @RequestBody CustomerDTO customerDTO) {
-        return ResponseEntity.ok(customerService.updateCustomer(customerID, customerDTO));
+    public ResponseData<CustomerResponse> updateCustomer(@PathVariable int customerID, @RequestBody CustomerCreationRequest customerCreationRequest) {
+        return ResponseData.<CustomerResponse>builder()
+                .code(200)
+                .message("Update customer success")
+                .data(customerService.updateCustomer(customerID, customerCreationRequest))
+                .build();
     }
 
     //API DELETE
     @DeleteMapping("/{customerID}")
-    public ResponseEntity<Void> deleteCustomer(@PathVariable int customerID) {
+    public ResponseData<Void> deleteCustomer(@PathVariable int customerID) {
         customerService.deleteCustomer(customerID);
-        return ResponseEntity.noContent().build();
+        return ResponseData.<Void>builder()
+                .code(204)
+                .message("Delete customer success")
+                .build();
     }
 
     //API LOGIN
     @PostMapping("/authenticate")
-    public ResponseEntity<Customer> authenticateCustomer(@RequestBody LoginDTO loginDTO){
-        return ResponseEntity.ok(customerService.loginCustomer(loginDTO));
+    public ResponseData<CustomerResponse> authenticateCustomer(@RequestBody LoginDTO loginDTO) {
+        return ResponseData.<CustomerResponse>builder()
+                .code(200)
+                .message("Authenticate customer success")
+                .data(customerService.loginCustomer(loginDTO))
+                .build();
     }
 }
