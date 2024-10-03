@@ -19,7 +19,7 @@ public class SwaggerConfig {
     public GroupedOpenApi publicAPI(@Value("${open.api.doc}") String apiDocs) {
         return GroupedOpenApi.builder()
                 .group(apiDocs)
-                .packagesToExclude("fu.api.backend.controller")
+                .packagesToScan("fu.api.backend.controller")
                 .build();
     }
 

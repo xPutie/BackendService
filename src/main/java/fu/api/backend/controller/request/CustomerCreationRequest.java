@@ -1,7 +1,5 @@
 package fu.api.backend.controller.request;
 
-import jakarta.validation.constraints.Max;
-import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -13,13 +11,11 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDTO {
+public class CustomerCreationRequest {
 
     @NotNull(message = "NOT_NULL")
     @NotEmpty
     private String userName;
-    @Min(3)
-    @Max(10)
     private String password;
     private String email;
     private String fullName;

@@ -1,4 +1,4 @@
-package fu.api.backend.controller.response;
+package fu.api.backend.common;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
