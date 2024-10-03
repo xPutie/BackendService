@@ -1,26 +1,24 @@
 package fu.api.backend.service;
 
-import fu.api.backend.controller.request.CustomerDTO;
+import fu.api.backend.controller.request.CustomerCreationRequest;
 import fu.api.backend.controller.request.LoginDTO;
+import fu.api.backend.controller.response.CustomerResponse;
 import fu.api.backend.entity.Customer;
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 
 public interface CustomerService {
 
-    Customer addCustomer(CustomerDTO customerDTO);
+    CustomerResponse addCustomer(CustomerCreationRequest customerCreationRequest);
 
-    List<Customer> getAllCustomer();
+    List<CustomerResponse> getAllCustomer();
 
-    Customer insertCustomer(Customer customer);
-
-    Customer updateCustomer(int customerID, CustomerDTO customer);
+    CustomerResponse updateCustomer(int customerID, CustomerCreationRequest customer);
 
     void deleteCustomer(int customerID);
 
-    Customer getCustomerById(int customerID);
+    CustomerResponse getCustomerById(int customerID);
 
-    Customer loginCustomer(LoginDTO loginDTO);
+    CustomerResponse loginCustomer(LoginDTO loginDTO);
 }
